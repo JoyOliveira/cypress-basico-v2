@@ -31,5 +31,5 @@ Cypress.Commands.add('fillMandatoryFieldsAndSubmit', function(){
     cy.get('input[id="email"]').type('teste@teste.com').should('have.value', 'teste@teste.com')
     cy.get('input[id="phone"]').type('12988654443').should('have.value', '12988654443')
     cy.get('#open-text-area').type('teste').should('have.value', 'teste')
-    cy.get('button[type="submit"]').click()
+    //cy.get('button[type="submit"]').click()
 })
