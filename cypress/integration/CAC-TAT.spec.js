@@ -70,7 +70,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
 
   })
 
-  it.only('selecionando valor aleatorio', function(){
+  it('selecionando valor aleatorio', function(){
    cy.get('select option')
     .as('options')
     .its('length', {log: false}).then(n => {
@@ -83,9 +83,23 @@ describe('Central de Atendimento ao Cliente TAT', function () {
 
   })
 
+  it('marca tipo de atendimento Feedback', function(){
+    cy.fillMandatoryFieldsAndSubmit
+      cy.get('input[type="radio"][value="feedback"]').check().should('be.checked')
 
+  })
 
-  
+  it.only('marca todos tipos de atendimento', function(){
+    cy.fillMandatoryFieldsAndSubmit()
+
+      cy.get('input[type="radio"]')
+       .should('have.length', 3)
+       .each(function($radio){
+        cy.wrap($radio).check()
+        cy.wrap($radio).should('be.checked')
+       })
+
+  })
 
   })
 
