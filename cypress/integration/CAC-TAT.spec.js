@@ -105,7 +105,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     cy.get('input[id="firstName"]').type('Maria', { delay: 1500 }).should('have.value', 'Maria')
     cy.get('input[id="lastName"]').type('Silva').should('have.value', 'Silva')
     cy.get('input[id="email"]').type('teste@teste.com').should('have.value', 'teste@teste.com')
-    cy.get('input[id="phone"]').type('12988654443').should('have.value', '12988654443').clear().should('have.value', '')
+    cy.get('input[id="phone"]').type('12988654443').should('have.value', '12988654443').clear   ().should('have.value', '')
     cy.get('#phone-checkbox').check()
 
     cy.get('#open-text-area').type('teste')
@@ -141,13 +141,33 @@ describe('Central de Atendimento ao Cliente TAT', function () {
     })
   }) 
 
-  it.only('seleciona um arquivo utilizando uma fixture para qual foi dada um alias', function(){
+  it('seleciona um arquivo utilizando uma fixture para qual foi dada um alias', function(){
     cy.fixture('example.json').as('sampleFile')
     cy.get('input[type="file"]')
       .selectFile('@sampleFile')
       .should(function($input){
         expect($input[0].files[0].name).to.equal('example.json', {action: 'drag-drop'})
       })
+  }) 
+
+  it('verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', function(){
+    cy.get('#privacy a').should('have.attr', 'target', '_blank')
+    
+  }) 
+
+  it('acessa a página da política de privacidade removendo o target e então clicando no link', function(){
+    cy.get('#privacy a')
+     .invoke('removeAttr', 'target').click()
+
+    cy.contains('Talking About Testing')
+    
+  }) 
+
+  it.only('testa a página da política de privacidade de forma independente', function(){
+    cy.visit('./src/privacy.html')
+
+    cy.contains('Talking About Testing')
+    
   }) 
 
 
