@@ -1,6 +1,6 @@
 let isPhoneRequired = false
 
-const phoneLabelSpan = Mocument.querySelector('.phone-label-span')
+const phoneLabelSpan = Dcument.querySelector('.phone-label-span')
 const phoneField = document.getElementById('phone')
 
 document.querySelector('#phone-checkbox')
