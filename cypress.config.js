@@ -5,13 +5,16 @@ const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 module.exports = defineConfig({
     e2e: {
         testIsolation:false,
-        projectId: "bcp7ng",
         viewportWidth:1440,
         viewportHeight:900,
         setupNodeEvents(on, config) {
             allureWriter(on, config);
             return config;
         }
-    }
+    },
+
+    projectId: "bcp7ng"
+    
+
 });
 
